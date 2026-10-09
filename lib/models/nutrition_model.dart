@@ -166,19 +166,90 @@ class MealEntry {
   }
 }
 
-/// Simple user profile used by the Home Dashboard and Profile screen.
+/// User profile used by the Home Dashboard, Auth, and Profile services.
 class UserProfile {
   final String uid;
   final String name;
+  final String? email;
   final String? photoUrl;
   final String dietPreference; // e.g. Vegetarian, Vegan, Non-Vegetarian
   final DailyGoal goal;
+  final DateTime? createdAt;
+  final DateTime? updatedAt;
+  final String role;
 
   const UserProfile({
     required this.uid,
-    required this.name,
+    this.name = '',
+    this.email,
     this.photoUrl,
     this.dietPreference = 'Vegetarian',
     this.goal = const DailyGoal(),
+    this.createdAt,
+    this.updatedAt,
+    this.role = 'user',
   });
+
+  factory UserProfile.fromMap(Map<String, dynamic> data, {String? uid}) {
+    DateTime? parseDate(dynamic val) {
+      if (val == null) return null;
+      if (val is DateTime) return val;
+      try {
+        final dynamic dynamicVal = val;
+        return dynamicVal.toDate() as DateTime;
+      } catch (_) {
+        if (val is String) return DateTime.tryParse(val);
+        if (val is int) return DateTime.fromMillisecondsSinceEpoch(val);
+      }
+      return null;
+    }
+
+    return UserProfile(
+      uid: uid ?? (data['uid'] as String? ?? ''),
+      name: data['name'] as String? ?? '',
+      email: data['email'] as String?,
+      photoUrl: data['photoUrl'] as String?,
+      dietPreference: data['dietPreference'] as String? ?? 'Vegetarian',
+      createdAt: parseDate(data['createdAt']),
+      updatedAt: parseDate(data['updatedAt']),
+      role: data['role'] as String? ?? 'user',
+    );
+  }
+
+  Map<String, dynamic> toMap() {
+    return {
+      'uid': uid,
+      'name': name,
+      if (email != null) 'email': email,
+      if (photoUrl != null) 'photoUrl': photoUrl,
+      'dietPreference': dietPreference,
+      'role': role,
+      if (createdAt != null) 'createdAt': createdAt,
+      if (updatedAt != null) 'updatedAt': updatedAt,
+    };
+  }
+
+  UserProfile copyWith({
+    String? uid,
+    String? name,
+    String? email,
+    String? photoUrl,
+    String? dietPreference,
+    DailyGoal? goal,
+    DateTime? createdAt,
+    DateTime? updatedAt,
+    String? role,
+  }) {
+    return UserProfile(
+      uid: uid ?? this.uid,
+      name: name ?? this.name,
+      email: email ?? this.email,
+      photoUrl: photoUrl ?? this.photoUrl,
+      dietPreference: dietPreference ?? this.dietPreference,
+      goal: goal ?? this.goal,
+      createdAt: createdAt ?? this.createdAt,
+      updatedAt: updatedAt ?? this.updatedAt,
+      role: role ?? this.role,
+    );
+  }
 }

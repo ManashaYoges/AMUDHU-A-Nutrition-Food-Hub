@@ -38,7 +38,7 @@ class NutrientProgressCard extends StatelessWidget {
               children: [
                 CircleAvatar(
                   radius: 16,
-                  backgroundColor: color.withOpacity(0.15),
+                  backgroundColor: color.withValues(alpha: 0.15),
                   child: Icon(icon, size: 18, color: color),
                 ),
                 const SizedBox(width: 8),
@@ -57,7 +57,7 @@ class NutrientProgressCard extends StatelessWidget {
               child: LinearProgressIndicator(
                 value: _progress,
                 minHeight: 8,
-                backgroundColor: color.withOpacity(0.12),
+                backgroundColor: color.withValues(alpha: 0.12),
                 valueColor: AlwaysStoppedAnimation<Color>(color),
               ),
             ),

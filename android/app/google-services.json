@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "75929928166",
+    "project_id": "amudhu-app",
+    "storage_bucket": "amudhu-app.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:75929928166:android:cab8f4e0ddf3472e3ed627",
+        "android_client_info": {
+          "package_name": "com.amudhu.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "75929928166-efkg130iea60thr9a787a3jbumiknv26.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCrZ3kwBeSrjn62B6ValZ4u6viS4pqg6TI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "75929928166-efkg130iea60thr9a787a3jbumiknv26.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
